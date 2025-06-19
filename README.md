@@ -107,4 +107,4 @@ Samples were classified based on total violations:
 
 * Use ML models to predict future water quality categories
 * Detect anomalies using unsupervised learning
-* Create an interactive dashboard using Plotly/Dash"# Shell-AICTE-Internship_Water-Quality-Prediction" 
+* Create an interactive dashboard using Plotly/Dash"
