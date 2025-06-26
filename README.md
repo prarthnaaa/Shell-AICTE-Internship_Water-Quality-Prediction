@@ -141,19 +141,6 @@ Build a machine learning model to predict future concentrations of key pollutant
 | PO₄       | Phosphate        |
 | Cl⁻       | Chloride         |
 
-### 📊 Example Output
-
-**Predicted pollutant levels for station `22` in `2024`:**
-
-```
-  O2: 6.13
-  NO3: 1.89
-  NO2: 0.04
-  SO4: 70.11
-  PO4: 0.03
-  CL: 113.25
-```
-
 ---
 
 ## 💾 Files Generated
