@@ -1,33 +1,36 @@
 # 💧 Water Quality Parameter Evaluation and Prediction
 
 **Shell-Edunet Skills4Future 4-Week Internship Program**
-**Weeks 1 & 2 Combined Tasks**
+**By: Prarthna Puhan**
 
 ---
 
 ## 📌 Objective
 
-This project focuses on analyzing and predicting water quality data across multiple stations over the years 2000 to 2021.
-Goals:
+This project focuses on analyzing and predicting water quality parameters across multiple stations over the years **1995 to 2050**. The main goals include:
 
-* Evaluate if water parameters are within acceptable environmental limits
-* Classify water quality of samples
-* Visualize pollutant trends
-* Predict future pollutant levels using machine learning
+* Checking if pollutant levels are within environmental limits
+* Classifying water quality into Good, Moderate, or Poor
+* Forecasting future pollutant levels using machine learning models
+* Visualizing pollution trends with an interactive app
 
 ---
 
 ## 📁 Dataset Overview
 
-* **File Used**: `WaterQualityPrediction-Dataset.csv`
+* **Raw File**: `WaterQualityPrediction-Dataset.csv`
+* **Processed File**: `WaterQualityPrediction-Processed.csv`
 * **Records**: 2861 rows
-* **Attributes**: 11 columns
 * **Time Range**: 2000–2021
-* **Preprocessing**: Null rows removed
+* **Columns**: 11 (includes station ID, date, pollutants)
+* **Preprocessing**:
+
+  * Missing values were dropped (Week 2)
+  * Derived `year` and `month` for feature engineering
 
 ---
 
-## 🧪 Water Parameters
+## 🔍 Water Parameters and Limits
 
 | Parameter | Description                     | Acceptable Limit |
 | --------- | ------------------------------- | ---------------- |
@@ -43,50 +46,18 @@ Goals:
 
 ---
 
-## ✅ Week 1: Data Analysis and Classification
+## ✅ Week 1: Data Cleaning and Classification
 
-### 🔧 Steps Performed
+### 🔧 Key Steps:
 
-1. **Data Cleaning**
+* Sorted by date and filled missing data using forward & backward fill
+* Added `Status` column per pollutant (Acceptable/High/Low)
+* Assigned overall **Water Quality Class** based on number of violations:
 
-   * Parsed and sorted by date
-   * Dropped rows with null values
-
-2. **Status Labeling**
-
-   * Each parameter tagged as `Acceptable`, `High`, or `Low`
-
-3. **Violation Count**
-
-   * Counted limit violations across all samples
-   * Bar chart visualized frequency
-
-4. **Time-Series Visualization**
-
-   * Plotted parameter trends over time
-   * Limit lines highlighted violations
-
-5. **Water Quality Classification**
-
-   * Based on number of violations per sample:
-
-     * `Good`: 0 violations
-     * `Moderate`: 1–2 violations
-     * `Poor`: 3+ violations
-
-6. **Monthly Trend Analysis**
-
-   * Monthly average values plotted for NH₄, BSK5, NO₃, and Cl⁻
-
-### 📦 Outputs
-
-* `WaterQualityPrediction-Processed.csv`: Status flags & quality class
-* Charts:
-
-  * Parameter violation counts
-  * Time-series plots
-  * Monthly average trends
-  * Classification distribution
+  * Good = 0 violations
+  * Moderate = 1–2 violations
+  * Poor = 3+ violations
+* Plotted pollutant trends and violation distribution
 
 ---
 
@@ -130,32 +101,62 @@ Build a machine learning model to predict future concentrations of key pollutant
    * Model saved as `pollution_model.pkl`
    * Feature structure saved as `model_columns.pkl`
 
-### 🧪 Pollutants Predicted
+---
 
-| Parameter | Description      |
-| --------- | ---------------- |
-| O₂        | Dissolved Oxygen |
-| NO₃       | Nitrate          |
-| NO₂       | Nitrite          |
-| SO₄       | Sulfate          |
-| PO₄       | Phosphate        |
-| Cl⁻       | Chloride         |
+## 💾 Week 3: Final Submission (Stacked Ensemble + Streamlit App)
+
+### 🔀 Final Approach: **Stacking Regressor**
+
+* Combined multiple base regressors to improve prediction consistency across pollutants
+* Base learners: Random Forest, Gradient Boosting, XGBoost, LightGBM
+* Meta-model: **RidgeCV**
+* Built using Streamlit (`Prediction_App.py`)
+
+### 🔗 Inputs:
+
+* `Station ID`
+* `Year` (Prediction Range: **1995 to 2050**)
+
+### 🧪 Output:
+
+* Predicted values for 9 pollutants
+* Status classification based on environmental thresholds
+* Visual summary in the form of a bar chart
 
 ---
 
-## 💾 Files Generated
+## 📊 Model Comparison Summary (R² Scores for NH₄–Cl⁻)
 
-| File Name                              | Description                       |
-| -------------------------------------- | --------------------------------- |
-| `WaterQualityPrediction-Processed.csv` | Cleaned and labeled dataset       |
-| `pollution_model.pkl`                  | Trained Random Forest model       |
-| `model_columns.pkl`                    | Feature structure for predictions |
+| Model             | Avg R² Score | Notes                                  |
+| ----------------- | ------------ | -------------------------------------- |
+| Random Forest     | Moderate     | Strong for NH₄, Cl⁻; weak for NO₂      |
+| Gradient Boosting | Moderate     | Good for NH₄, PO₄                      |
+| Linear Regression | Moderate     | Very good for SO₄, Cl⁻                 |
+| XGBoost           | Moderate     | Balanced but low on NO₂                |
+| LightGBM          | Moderate     | Strong on SO₄, Cl⁻                     |
+| Neural Network    | Low          | Poor performance overall               |
+| **Stacking**      | **Best**     | Most consistent overall across metrics |
+
+---
+
+## 🗂️ Files Included
+
+| File Name                              | Description                               |
+| -------------------------------------- | ----------------------------------------- |
+| `Final-Week_3.ipynb`                   | Final model training + evaluation         |
+| `Prediction_App.py`                    | Streamlit app to predict pollution levels |
+| `WaterQualityPrediction-Processed.csv` | Cleaned dataset with quality labels       |
+| `stacking_prediction_model.pkl`        | Trained stacked model                     |
+| `columns.pkl`                          | Column encoding reference                 |
+| `Week_1.ipynb`                         | Data cleaning, analysis, and labeling     |
+| `Week_2.ipynb`                         | Initial ML model and evaluations          |
+| `PrarthnaPuhan-Project_PPT.pptx`       | Final presentation slides                 |
 
 ---
 
 ## 🔮 Future Scope
 
-* Use ML models to classify water quality (Good/Moderate/Poor)
-* Add seasonal or monthly forecasting granularity
-* Apply anomaly detection for unusual pollutant patterns
-* Build an interactive dashboard using Dash or Streamlit
+* Use classification models to directly predict `Good/Moderate/Poor`
+* Add spatial and seasonal factors to improve prediction
+* Visualize results in an interactive dashboard
+* Use anomaly detection to catch outliers in water quality
