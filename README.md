@@ -50,7 +50,7 @@ This project focuses on analyzing and predicting water quality parameters across
 
 ### 🔧 Key Steps:
 
-* Sorted by date and filled missing data using forward & backward fill
+* Sorted by date and dropped rows with null values
 * Added `Status` column per pollutant (Acceptable/High/Low)
 * Assigned overall **Water Quality Class** based on number of violations:
 
@@ -108,7 +108,7 @@ Build a machine learning model to predict future concentrations of key pollutant
 ### 🔀 Final Approach: **Stacking Regressor**
 
 * Combined multiple base regressors to improve prediction consistency across pollutants
-* Base learners: Random Forest, Gradient Boosting, XGBoost, LightGBM
+* Base learners: Random Forest, Gradient Boosting, Linear Regression
 * Meta-model: **RidgeCV**
 * Built using Streamlit (`Prediction_App.py`)
 
@@ -146,8 +146,6 @@ Build a machine learning model to predict future concentrations of key pollutant
 | `Final-Week_3.ipynb`                   | Final model training + evaluation         |
 | `Prediction_App.py`                    | Streamlit app to predict pollution levels |
 | `WaterQualityPrediction-Processed.csv` | Cleaned dataset with quality labels       |
-| `stacking_prediction_model.pkl`        | Trained stacked model                     |
-| `columns.pkl`                          | Column encoding reference                 |
 | `Week_1.ipynb`                         | Data cleaning, analysis, and labeling     |
 | `Week_2.ipynb`                         | Initial ML model and evaluations          |
 | `PrarthnaPuhan-Project_PPT.pptx`       | Final presentation slides                 |
