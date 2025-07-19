@@ -1,7 +1,6 @@
 # 💧 Water Quality Parameter Evaluation and Prediction
 
 **Shell-Edunet Skills4Future 4-Week Internship Program**
-**By: Prarthna Puhan**
 
 ---
 
